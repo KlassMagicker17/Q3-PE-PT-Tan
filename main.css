@@ -15,8 +15,15 @@
     z-index: 10;
 }
 
-h1,h3,h4,h5,h6 {
+h1, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
+}
+
+a {
+    color: white;
+}
+a:hover {
+    opacity: 0.5;
 }
 
 /* big main stuff */
@@ -59,14 +66,13 @@ main {
     position: relative;
     z-index: 10;
     padding: 3rem 2rem;
-    background: inherit;
-    background-size: unset;
 }
 
 .heading-group h1 {
     margin: 0px;
     font-size: 2rem;
     text-transform: uppercase;
+    color: black;
 }
 
 .heading-group h2 {
@@ -83,11 +89,11 @@ main {
     display: flex;
     flex-flow: column;
     align-items: center;
+    justify-content: center;
     margin: 1rem;
     padding: 1rem;
     position: relative;
-    height: max(auto, 80%);
-    overflow: hidden;
+    height: 80%;
     border-radius: 30px 30px 30px 0;
 }
 
@@ -98,42 +104,72 @@ main {
     text-transform: uppercase;
     font-size: 1.2rem;
     margin: 0;
+    text-shadow: 0px 0px 20px white;
 }
 
 .info-block p {
-    font-size: 0.5em;
+    font-size: max(50%, 0.1em);
     width: min(90%, 500px);
 }
+
 .info-block ul {
     list-style: none;
     font-size: 0.8rem;
+    padding: 0px;
 }
+
 .info-block ul li {
     cursor: pointer;
 }
 
-.double-span {
-    grid-column: span 2;
+.info-block table {
+    border-spacing: 0px;
+    color: black;
+    /* border: solid 3px black; */
 }
+
+.info-block td, th {
+    border: solid 2px black;
+    border-spacing: 0px;
+    font-size: 0.4rem;
+    padding: 5px;
+    margin: 0px;
+    background-color: hsl(0, 100%, 90%, 30%);
+}
+
+
 
 /* skill description things */
 
 #skill_description {
     position: absolute;
     right: 0px;
-    font-size: 0.8rem;
-    width: 40vw;
+    font-size: 70%;
+    width: 50%;
     height: 70%;
     background-color: var(--color-4);
     border-radius: 20px 0px 0px 20px;
 }
+
 #skill_description p {
     position: absolute;
     right: 0px;
     top: 0px;
     padding: 1rem;
 }
+
 /* helper classes */
+.glass-background {
+    overflow: hidden;
+    
+    /* background-size: 100vw; */
+}
+
+.same-background {
+    background-image: inherit;
+    background-size: 100vw;
+    background-position: center center;
+}
 
 .glass-background::before {
     content: '';
@@ -143,9 +179,12 @@ main {
     left: 0px;
     top: 0px;
     z-index: -1;
-    background: inherit;
-    filter: blur(4px);
-    box-shadow: inset 0px 0px 4000px white;
+    background-image: inherit;
+    filter: blur(10px);
+    box-shadow: inset 0px 0px 4000px black;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
 }
 
 br {
@@ -157,13 +196,34 @@ br {
 .hidden {
     opacity: 0;
 }
+
 .selected {
     opacity: 0.6;
 }
 
+.elements-left {
+    align-items: baseline;
+    padding-left: 2em;
+}
+
+.double-span {
+    grid-column: span 2;
+}
+
+.triple-span {
+    grid-column: span 3;
+}
+
 /* background stuff */
 
-main section::before {
+.with-background {
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+}
+
+main .with-background::before {
     content: '';
     position: absolute;
     width: 100%;
@@ -173,13 +233,45 @@ main section::before {
     background-color: var(--color-0);
 }
 
-main section:nth-child(1) {
+main .with-background:nth-child(1) {
     background-image: url('src/badminton-background-1.jpg');
-    background-position: center;
 }
 
-main section:nth-child(3) {
+main .with-background:nth-child(3) {
     background-image: url('src/badminton-background-2.jpg');
-    background-position: center;
-    background-size: cover;
+}
+
+main .with-background:nth-child(6) {
+    background-image: url('src/badminton-background-3.jpg');
+}
+
+main .with-background:nth-child(7) {
+    background-image: url('src/badminton-background-4.jpg');
+}
+
+main .with-background:nth-child(8) {
+    background-image: url('src/badminton-background-5.jpg');
+}
+
+main .with-background:nth-child(10) {
+    background-image: url('src/badminton-background-6.jpg');
+}
+
+@media only screen and (max-width: 900px) {
+    .grid-elements {
+        grid-template-columns: 1fr;
+    }
+    .info-block {
+        overflow: scroll;
+        justify-content: flex-start;
+        background-color: #FFF4;
+    }
+    #skill_description {
+        right: unset;
+        bottom: 0px;
+        width: 100%;
+        height: 35%;
+        border-radius: 20px 20px 0px 0px;
+        font-size: 50%;
+    }
 }
